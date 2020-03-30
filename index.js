@@ -8,6 +8,7 @@ const   express = require('express'),
         publicPath = path.join(__dirname,"test_client","build")
         app = express()
 
+process.env.UV_THREADPOOL_SIZE = 10
 app.use(cors())
 app.options("*", cors())
 app.use(bodyParser.urlencoded({extended:false}))

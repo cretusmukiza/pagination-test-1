@@ -8,8 +8,6 @@ body{
 }
 .table-items{
   max-height: 82vh;
-  overflow-y: scroll;
-  z-index: 100;
 }
 .loader{
   min-height: 82vh;
@@ -19,28 +17,23 @@ body{
   justify-content: center;
   background-color: #f2f1f7;
 }
-thead tr th {
-  position: sticky;
-  top: 0;
-  background-color: #6c757d;
-  border: 1px solid #6c757d;
-}
 .table-items table{
   max-height: 70vh;
   min-height: 30vh;
   text-align: left;
-  font-size: 1rem;
-  overflow-y: scroll;
-  
+  font-size: 1rem;  
+}
+th,td{
+  color: #282c34;
 }
 .table tbody{
 max-height: 70vh;
-overflow-y: scroll;
 }
 .error{
   background-color: #f2f1f7;
   height: 100vh;
 }
+
 
 
 th{

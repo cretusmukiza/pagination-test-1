@@ -1,6 +1,6 @@
 const httpStatus = require("http-status"),
   { Error } = require("./util/api_response"),
-  { callItemsApi } = require("./util/methods");
+  { callItemsApi,writeStream } = require("./util/methods");
 
 exports.controller = async (req, res, next) => {
   try {
@@ -40,9 +40,7 @@ exports.controller = async (req, res, next) => {
         filteredData = data.filter(
           item => item.absoluteIndex >= startAbsoluteIndex
         );
-        res.status(httpStatus.OK).json({
-          data: filteredData
-        });
+        writeStream(filteredData,res)
       } else {
         /**
          * The index of the first item in the page
@@ -95,7 +93,7 @@ exports.controller = async (req, res, next) => {
           item => item.absoluteIndex >= startAbsoluteIndex
         );
         finalResult = filteredFirstItem.concat(finalResult);
-        res.status(httpStatus.OK).json({ data: finalResult });
+        writeStream(finalResult,res)
       }
     } else {
       /**
@@ -137,9 +135,7 @@ exports.controller = async (req, res, next) => {
             item.absoluteIndex >= startAbsoluteIndex &&
             item.absoluteIndex <= endAbsoluteIndex
         );
-        res.status(httpStatus.OK).json({
-          data: filteredData
-        });
+        writeStream(filteredData,res)
       } else {
         
 
@@ -189,7 +185,7 @@ exports.controller = async (req, res, next) => {
           item => item.absoluteIndex <= endAbsoluteIndex
         );
         finalResult = finalResult.concat(filteredLastItem);
-        res.status(httpStatus.OK).json({ data: finalResult });
+        writeStream(finalResult,res)
       }
     }
   } catch (error) {

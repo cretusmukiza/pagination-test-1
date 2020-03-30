@@ -1,4 +1,5 @@
 const fetch = require("node-fetch");
+const {Readable} =require('stream')
 const { baseurl } = require("../config");
 exports.callItemsApi = page => {
 console.log(page)
@@ -13,3 +14,19 @@ console.log(page)
       });
   });
 };
+exports.writeStream = (data,res)=>{
+  let inputStream = new Readable({
+    read(){}
+  })
+  for(let item = 0; item < data.length ; item++){
+    if(item === (data.length - 1)){
+      inputStream.push(`${JSON.stringify(data[item])}`)
+    }
+    else{
+      inputStream.push(`${JSON.stringify(data[item])}/`)
+    }
+    
+  }
+  inputStream.push(null)
+  inputStream.pipe(res)
+}
