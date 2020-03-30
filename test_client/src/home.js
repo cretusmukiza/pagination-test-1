@@ -57,7 +57,7 @@ export default class Home extends Component {
   }
   render() {
     const { data,pageSize,activePage,loading} = this.state;
-    const numberOfPages = Math.ceil(1000000/pageSize)
+    const numberOfPages = Math.ceil(1000000/100)
     return (
       <div className="container padding-top-2">
         <div className="d-flex flex-row align-items-center mb-1 font-2 col-sm-5 p-0">

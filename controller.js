@@ -7,7 +7,6 @@ exports.controller = async (req, res, next) => {
     let { page, pageSize } = req.params;
     page = Number(page);
     pageSize = Number(pageSize);
-    console.log(page, pageSize);
     const numberOfItems = 1000000;
     /**
      * Validating the parameters
@@ -41,7 +40,6 @@ exports.controller = async (req, res, next) => {
         filteredData = data.filter(
           item => item.absoluteIndex >= startAbsoluteIndex
         );
-        console.log(filteredData);
         res.status(httpStatus.OK).json({
           data: filteredData
         });
@@ -139,7 +137,6 @@ exports.controller = async (req, res, next) => {
             item.absoluteIndex >= startAbsoluteIndex &&
             item.absoluteIndex <= endAbsoluteIndex
         );
-        console.log(filteredData);
         res.status(httpStatus.OK).json({
           data: filteredData
         });
