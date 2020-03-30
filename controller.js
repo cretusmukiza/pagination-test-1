@@ -26,7 +26,7 @@ exports.controller = async (req, res, next) => {
        * The page before the current page
        */
       let lastPage = page - 1;
-      if (numberOfItems - lastPage * pageSize <= pageSize) {
+      if (numberOfItems - lastPage * pageSize <= 100) {
         let startAbsoluteIndex = lastPage * pageSize;
         let searchedPage = numberOfItems / 100;
         const response = await callItemsApi(searchedPage);
@@ -85,7 +85,7 @@ exports.controller = async (req, res, next) => {
         let firstItem = {};
         response.forEach(item => {
           if (item.page !== startPage) {
-            finalResult.concat(item.data);
+            finalResult = finalResult.concat(item.data);
           }
           if (item.page === startPage) {
             firstItem = item;
@@ -106,7 +106,7 @@ exports.controller = async (req, res, next) => {
       /**
        * The index of the last item in the page
        */
-      let endAbsoluteIndex = page * pageSize - 1;
+      let endAbsoluteIndex = (page * pageSize) - 1;
 
       /**
        * Finding the start page in legacy api
@@ -141,6 +141,7 @@ exports.controller = async (req, res, next) => {
           data: filteredData
         });
       } else {
+        
 
       /**
        * If the last page and start page are different form the request to legacy api for each page
@@ -170,7 +171,7 @@ exports.controller = async (req, res, next) => {
 
         response.forEach(item => {
           if (item.page !== startPage && item.page !== endPage) {
-            finalResult.concat(item.data);
+            finalResult = finalResult.concat(item.data);
           }
           if (item.page === startPage) {
             firstItem = item;
